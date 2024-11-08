@@ -12,13 +12,9 @@ class BehaviorPrediction {
 
   // 행동 클래스 레이블
   final Map<int, String> classLabels = {
-    0: "질주",
-    1: "엎드리기",
-    2: "흔들기",
-    3: "앉기",
-    4: "서 있기",
-    5: "속보",
-    6: "걷기"
+    0: "뛰기",
+    1: "정지",
+    2: "걷기"
   };
 
   // 생성자: ONNX 모델을 로드하고 세션을 초기화
@@ -100,12 +96,12 @@ class BehaviorPrediction {
           .reduce((a, b) => a.value > b.value ? a : b)
           .key;
 
-      // 7가지 행동을 정지, 걷기, 뛰기로 분류
-      if (mostFrequentIndex == 0 || mostFrequentIndex == 5) { // 질주 또는 속보
+      // 정지, 걷기, 뛰기로 분류
+      if (mostFrequentIndex == 0 ) { // 뛰기
         predictedBehavior.value = '뛰기';
-      } else if (mostFrequentIndex == 6) { // 걷기
+      } else if (mostFrequentIndex == 2) { // 걷기
         predictedBehavior.value = '걷기';
-      } else { // 나머지 행동 (엎드리기, 흔들기, 앉기, 서 있기)
+      } else { // 나머지 행동 (정지)
         predictedBehavior.value = '정지';
       }
 

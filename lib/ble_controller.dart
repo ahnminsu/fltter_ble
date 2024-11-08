@@ -135,6 +135,7 @@ class BleController extends GetxController {
 
       // 버퍼에 데이터를 무조건 추가
       dataBuffer.add([...accelerometerData, ...gyroscopeData]);
+      print(dataBuffer);
       print("현재 버퍼 크기: ${dataBuffer.length}");
 
       // 버퍼에 데이터가 15개 이상 쌓이면 처리
